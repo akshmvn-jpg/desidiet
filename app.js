@@ -14,7 +14,7 @@ const totals = {
 const cardTemplate = document.getElementById("foodCardTemplate");
 
 const state = {
-  foods: [],
+  foods: Array.isArray(window.INDIAN_FOODS) ? window.INDIAN_FOODS : [],
   plate: []
 };
 
@@ -132,9 +132,14 @@ function renderPlate() {
   totals.fat.textContent = `${format(total.fat)} g`;
 }
 
-async function init() {
-  const response = await fetch("./data/indian_foods.json");
-  state.foods = await response.json();
+function init() {
+  if (!state.foods.length) {
+    resultCount.textContent = "0 foods";
+    foodGrid.innerHTML = `<p class="muted">Food data failed to load. Refresh or use a local server.</p>`;
+    renderPlate();
+    return;
+  }
+
   populateCategories(state.foods);
   renderFoodGrid();
   renderPlate();
