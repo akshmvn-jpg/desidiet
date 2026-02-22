@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DesiDiet Macro Explorer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">India Food Macro Database</p>
+        <h1>DesiDiet</h1>
+        <p>
+          Explore macro nutrients for popular Indian foods and build your plate with
+          precision.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="controls glass">
+        <div>
+          <label for="search">Search food</label>
+          <input id="search" type="text" placeholder="e.g. Rajma, Idli, Paneer" />
+        </div>
+        <div>
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+        <div>
+          <label for="diet">Diet</label>
+          <select id="diet">
+            <option value="all">All</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="eggetarian">Eggetarian</option>
+            <option value="non-vegetarian">Non-vegetarian</option>
+          </select>
+        </div>
+        <div>
+          <label for="sort">Sort by</label>
+          <select id="sort">
+            <option value="name">Name (A-Z)</option>
+            <option value="protein">Protein (high-low)</option>
+            <option value="calories">Calories (low-high)</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="layout">
+        <section>
+          <div class="section-title">
+            <h2>Food database</h2>
+            <p id="resultCount"></p>
+          </div>
+          <div id="foodGrid" class="grid"></div>
+        </section>
+
+        <aside class="glass plate">
+          <h2>Your plate</h2>
+          <p class="muted">Add foods from the database and track total macros.</p>
+          <div id="plateItems" class="plate-items"></div>
+          <div class="totals">
+            <h3>Total macros</h3>
+            <ul>
+              <li><span>Calories</span><strong id="totalCalories">0</strong></li>
+              <li><span>Protein</span><strong id="totalProtein">0 g</strong></li>
+              <li><span>Carbs</span><strong id="totalCarbs">0 g</strong></li>
+              <li><span>Fat</span><strong id="totalFat">0 g</strong></li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <template id="foodCardTemplate">
+      <article class="card">
+        <h3></h3>
+        <p class="meta"></p>
+        <ul class="macro-list"></ul>
+        <button class="add-btn">Add to plate</button>
+      </article>
+    </template>
+
+    <script src="data/indian_foods.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
