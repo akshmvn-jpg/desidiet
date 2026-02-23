@@ -39,6 +39,7 @@ function getFilteredFoods() {
   const filtered = state.foods.filter((food) => {
     const termMatch =
       food.name.toLowerCase().includes(term) ||
+      (food.englishName || "").toLowerCase().includes(term) ||
       food.category.toLowerCase().includes(term);
     const categoryMatch = category === "all" || food.category === category;
     const dietMatch = diet === "all" || food.diet === diet;
@@ -61,7 +62,10 @@ function renderFoodGrid() {
 
   for (const food of foods) {
     const card = cardTemplate.content.cloneNode(true);
-    card.querySelector("h3").textContent = food.name;
+    card.querySelector("h3").textContent =
+      food.englishName && food.englishName !== food.name
+        ? `${food.name} (${food.englishName})`
+        : food.name;
     card.querySelector(
       ".meta"
     ).textContent = `${food.category} • ${food.diet} • ${food.serving}`;
@@ -100,7 +104,7 @@ function renderPlate() {
     const wrapper = document.createElement("div");
     wrapper.className = "plate-item";
     wrapper.innerHTML = `
-      <p><strong>${food.name}</strong></p>
+      <p><strong>${food.englishName && food.englishName !== food.name ? `${food.name} (${food.englishName})` : food.name}</strong></p>
       <p class="muted">${food.calories} kcal | P ${format(food.protein)}g | C ${format(
       food.carbs
     )}g | F ${format(food.fat)}g</p>

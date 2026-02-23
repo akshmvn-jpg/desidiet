@@ -4,7 +4,7 @@ A polished web app showcasing a broad Indian food macro database with search, ca
 
 ## Features
 
-- 132 Indian foods across breakfast, mains, snacks, breads, dairy, desserts, beverages, fruits, and healthy options.
+- 500 Indian foods across breakfast, mains, snacks, breads, dairy, desserts, beverages, fruits, and healthy options, including regional names with English names.
 - Search by food name or category.
 - Filter by category and diet preference.
 - Sort by name, protein, or calories.
